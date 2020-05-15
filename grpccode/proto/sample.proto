@@ -1,0 +1,54 @@
+syntax = "proto3";
+
+package person;
+option go_package="person";
+
+
+message person{
+    int32 id = 1;
+    string name = 2;
+}
+
+
+message PersonRequest{
+    person person = 1;
+}
+
+message PersonResponse{
+    string result = 1;
+}
+
+message PersonStreamingRequest{
+    person person = 1;
+}
+
+message PersonStreamingResponse{
+    string  result = 1;
+}
+
+
+message PersonClientStreamingRequest{
+    person person = 1;
+}
+
+message PersonClientStreamingResponse{
+     string result = 1;
+}
+
+
+message PersonClientserverStreamingRequest{
+    person person = 1;
+}
+
+message PersonClientServerStreamingResponse{
+    string result = 1;
+}
+service PersonService{
+    rpc PersonCreation(PersonRequest) returns (PersonResponse){};
+
+    rpc GetPerson(PersonStreamingRequest) returns (stream PersonStreamingResponse) {};
+    rpc CreatePerson(stream PersonClientStreamingRequest) returns (PersonClientStreamingResponse) {};
+    rpc ClientServerStream(stream PersonClientserverStreamingRequest) returns (stream PersonClientServerStreamingResponse) {};
+
+}
+

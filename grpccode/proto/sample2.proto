@@ -1,0 +1,17 @@
+syntax = "proto3";
+
+package person;
+option go_package="person";
+
+message UserReq{
+    string firstName = 1;
+    string lastName = 2;
+}
+
+message UserRes{
+    bool success = 1;
+}
+
+service UserService{
+    rpc CreateUser(UserReq) returns (UserRes){};
+}
